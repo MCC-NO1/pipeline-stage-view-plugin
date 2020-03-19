@@ -140,4 +140,21 @@ public class JobExt {
         }
         return runsExt;
     }
+
+    public static RunExt createSingle(List<WorkflowRun> runs, String since, boolean fullStages) {
+        if (since != null) {
+            since = since.trim();
+            if (since.length() == 0) {
+                since = null;
+            }
+        }
+
+        RunExt runExt = null;
+        for (WorkflowRun run : runs) {
+            if (since != null && runExt.getName().equals(since)) {
+                runExt = (fullStages) ? RunExt.create(run) : RunExt.create(run).createWrapper();;
+            }
+        }
+        return runExt;
+    }
 }
