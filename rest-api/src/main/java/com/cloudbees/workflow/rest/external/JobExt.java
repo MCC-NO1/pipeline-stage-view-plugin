@@ -149,13 +149,11 @@ public class JobExt {
             }
         }
 
-        RunExt runExt = null;
+        RunExt runExt = new RunExt();
         for (WorkflowRun run : runs) {
-            runExt = (fullStages) ? RunExt.create(run) : RunExt.create(run).createWrapper();
-            if (where != null && runExt.getName().equals(where)) {
+            if (where != null && where.equals(run.getDisplayName())) {
+                runExt = (fullStages) ? RunExt.create(run) : RunExt.create(run).createWrapper();
                 break;
-            }else{
-                runExt = null;
             }
         }
         return runExt;
