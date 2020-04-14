@@ -154,6 +154,8 @@ public class JobExt {
             runExt = (fullStages) ? RunExt.create(run) : RunExt.create(run).createWrapper();
             if (where != null && runExt.getName().equals(where)) {
                 break;
+            }else{
+                runExt = null;
             }
         }
         return runExt;
