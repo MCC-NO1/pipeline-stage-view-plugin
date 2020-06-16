@@ -78,4 +78,15 @@ public class JobAPI extends AbstractWorkflowJobActionHandler {
     public JobExt doDescribe() {
         return JobExt.create(getJob());
     }
+
+    /**
+     * Get single Workflow Job runs/builds by the specified run/build name.
+     * @param where The run/build name at which to find single runs/builds to be returned.
+     * @param fullStages Return the stageNodes within each stage
+     * @return The runs list.
+     */
+    @ServeJson
+    public RunExt doRun(@QueryParameter String where, @QueryParameter boolean fullStages) {
+        return JobExt.createSingle(getJob().getBuilds(), where, fullStages);
+    }
 }
